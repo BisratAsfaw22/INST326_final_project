@@ -5,5 +5,7 @@ def group_h():
     """
     # About Levis Forbang
     print(f"Levis Forbang's favorite hobbies: moviegoer, skydiving and traveling.")
+    # About Anani Adjanor Adanlete
+    print("Anani Adjanor Adanlete love to play soccer and drive sport cars.")
 
 group_h()
