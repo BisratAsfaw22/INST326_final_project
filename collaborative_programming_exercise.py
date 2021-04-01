@@ -9,5 +9,7 @@ def group_h():
     print("Anani Adjanor Adanlete love to play soccer and drive sport cars.")
     # About Bisrat Asfaw
     print("Bisrat Asfaw likes to watch shows, movies and loves hanging out with friends and family")
+    # About Tyler Perlstein
+    print("Tyler Perlstein is left-handed, and likes to play Super Smash Bros. and practice volleyball.")
 
 group_h()
