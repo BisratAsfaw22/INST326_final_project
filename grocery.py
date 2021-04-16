@@ -2,8 +2,18 @@ class Product:
     def __init__(self, name, type, aisle, price, quantity, stock):
 
 class Inventory:
+	""" Generates an inventory by reading through the products CSV file and adding each product to a dictionary, where the product name serves as the key.
+   	Attributes:
+       inventory: inventory of all grocery store products
+   	"""
     def __init__(self, list_of_products):
-        *** Generates an inventory by reading through the products CSV file and adding each product to a dictionary, where the product name serves as the key
+        """ Initializes product entries for the inventory object upon instantiation.
+       Args:
+           list_of_products: string value of file path to CSV file with all the products in the grocery store
+       Side Effects:
+           Opens and reads CSV file with product information.
+           Creates and modifies value of tokens and key/value pairs of dictionary of inventory atrribute line by line.
+       """
     def get_product(self, product):
         """ This method has two parameters and it searches for the given product name through the dictionary.
 	
@@ -40,7 +50,14 @@ class User:
 	    query: searches product
 	"""
     def examine(self, product):
-        *** Examines a product and returns its attributes as given in its dictionary entry
+    	""" Examines a product and returns its attributes as given in its dictionary entry.
+       	Args:
+           product: Product object which the user would like to obtain information from
+      	Exceptions:
+           NameError: product is not a product in the inventory
+      	Returns:
+           Returns string labels with corresponding variables (name, type, aisle, price, quantity, and stock) as part of the list associated with the product name key.
+        """
 	def add_product_to_cart(self, product, quantity=1):
         *** Adds a specific amount of a particular product to the cart
     def remove_product_from_cart(self, product, quantity=1):
