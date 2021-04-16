@@ -25,7 +25,7 @@ class Inventory:
 	     product (str): represents the product including its name and other information
 		
 	Returns:
-		The product with its information
+		A dictionary with the product information
 	"""
     def suggest(self,product):
 	""" This method has two parameter and it is use to recommend three alternate product to the customer.
@@ -37,21 +37,21 @@ class Inventory:
 
 class User:
     def __init__(self,name, cart):
-        """ This method takes three parameters and it generates a grocery store application user where it asks the user for an input.
+        """  It generates a grocery store application user where it asks the user for an input of a product name.
 	
 	Args:
 	    name(string): the name of the product
-	    cart: represents the users cart information
+	    cart: represents the user's cart and includes the products in the cart
 	    
 	Returns:
-	    The user's input
+	    Asks the user to input a product of their interest
 	"""
 	def search_product(self, query):
-        """ This method takes two parameters and looks up a specific product through entry a search term, which then shows ten results accoording
-	    to relevance through Pandas.
+        """ It looks up a specific product through entry a search term, which then shows ten results accoording
+	    to relevance through Pandas
 	    
 	Args:
-	    query: searches product
+	    query: finds products
 	"""
     def examine(self, product):
     	""" Examines a product and returns its attributes as given in its dictionary entry.
