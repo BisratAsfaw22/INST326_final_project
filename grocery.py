@@ -36,8 +36,16 @@ class Inventory:
 	"""
 
 class User:
+	""" It asks the user for an input of a product's name of their interest and finds it. Adds product into 
+		the cart or removes unwanted product from the cart.
+
+	Attributes:
+		product(str): indicates information of the product
+		cart(str): contains information on what is in the user's cart
+	""" 
     def __init__(self,name, cart):
-        """  It generates a grocery store application user where it asks the user for an input of a product name.
+        """ It generates a grocery store application user where it asks the user for an input of a product 
+			name.
 	
 	Args:
 	    name(string): the name of the product
@@ -47,8 +55,8 @@ class User:
 	    Asks the user to input a product of their interest
 	"""
 	def search_product(self, query):
-        """ It looks up a specific product through entry a search term, which then shows ten results accoording
-	    to relevance through Pandas
+        """ It looks up a specific product through entry a search term, which then shows ten 
+			results accoording to relevance through Pandas
 	    
 	Args:
 	    query: finds products
