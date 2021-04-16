@@ -1,24 +1,28 @@
-class Product:
-    def __init__(self, name, type, aisle, price, quantity, stock):
+###class Product:
+    ###def __init__(self, name, type, aisle, price, quantity, stock):
+    
+### CHANGES:
+# Modify docstring length to be shorter than 80 characters per line.
+# Change class/method descriptions to be concise.
+# Include type of variable (str, dict, etc.) when referenced in docstring.
 
 class Inventory:
 	""" Generates an inventory by reading through the products CSV file and adding each product to a dictionary, where the product name serves as the key.
    	Attributes:
-       inventory: inventory of all grocery store products
+       inventory (dict): inventory of all grocery store products
    	"""
     def __init__(self, list_of_products):
-        """ Initializes product entries for the inventory object upon instantiation.
-       Args:
-           list_of_products: string value of file path to CSV file with all the products in the grocery store
-       Side Effects:
-           Opens and reads CSV file with product information.
+    	""" Initializes product entries for the inventory object.
+        Args:
+           list_of_products (str): file path to CSV file with all the products in the grocery store
+        Side Effects:
            Creates and modifies value of tokens and key/value pairs of dictionary of inventory atrribute line by line.
-       """
+        """
     def get_product(self, product):
-        """ This method has two parameters and it searches for the given product name through the dictionary.
+        """ Returns informatoin about the product.
 	
 	Args:
-	     product: represents the product including its name and other information
+	     product (str): represents the product including its name and other information
 		
 	Returns:
 		The product with its information
