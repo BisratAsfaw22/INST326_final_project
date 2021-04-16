@@ -5,15 +5,35 @@ class Inventory:
     def __init__(self, list_of_products):
         *** Generates an inventory by reading through the products CSV file and adding each product to a dictionary, where the product name serves as the key
     def get_product(self, product):
-        *** Returns a product from the inventory by searching through the dictionary and finding the product according to the given name
+        """ This method has two parameters and it searches for the given product name through the dictionary.
+	
+	Args:
+	     product: represents the product including its name and other information
+		
+	Returns:
+		The product with its information
+	"""
     def suggest(self,product):
         *** Suggests three products relevant to a designated product according to a specified attribute (type, aisle, etc.)
 
 class User:
     def __init__(self,name, cart):
-        *** Generates a grocery store application user
+        """ This method takes three parameters and it generates a grocery store application user where it asks the user for an input.
+	
+	Args:
+	    name(string): the name of the product
+	    cart: represents the users cart information
+	    
+	Returns:
+	    The user's input
+	"""
 	def search_product(self, query):
-        *** Looks up a specific product through entry a search term, which then shows ten results accoording to relevance through Pandas
+        """ This method takes two parameters and looks up a specific product through entry a search term, which then shows ten results accoording
+	    to relevance through Pandas.
+	    
+	Args:
+	    query: searches product
+	"""
     def examine(self, product):
         *** Examines a product and returns its attributes as given in its dictionary entry
 	def add_product_to_cart(self, product, quantity=1):
