@@ -28,11 +28,11 @@ class Inventory:
 		A dictionary with the product information
 	"""
     def suggest(self,product):
-	""" This method has two parameter and it is use to recommend three alternate product to the customer.
+	"""recommend three alternate products to the customer.
 	Args: 
-		Product: which will represent the names of the recommend products.
+		Product(str): represent the names of the recommend products.
 	Returns: 
-		It should return the name any product that the customer picked from the recommended products.
+		The name of any product that the customer picked from the recommended products.
 	"""
 
 class User:
@@ -73,15 +73,15 @@ class User:
 	def add_product_to_cart(self, product, quantity=1):
         *** Adds a specific amount of a particular product to the cart
     def remove_product_from_cart(self, product, quantity=1):
-	""" This methode has 3 parameters and it is use to a specific amount of a particular product from the customer cart.
+	""" Remove a specific amount of a particular product from the customer cart.
 	
 	Args: 
-		product: which represent the list of the product name that the customer has in his cart.
+		product(str): represent the list of the product name that the customer has in his cart.
 		
-		Quantity: which represent the exact amount of each product that will be removed from the cart. 
+		Quantity(int): represent the exact amount of each product that will be removed from the cart. 
 		
 	Returns:
-		This should return the list of product left in the customer cart after the quantity of product was removed.
+		returns the list of product left in the customer cart after the quantity of product was removed.
 	"""
         
 	def check_out:
