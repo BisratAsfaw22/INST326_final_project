@@ -123,11 +123,26 @@ class IventoryClass:
 
                     
 ## Replace this comment with method(s) that display the following information
-        #   Total items(s) not fund: 1
-                # Display the names(key) of the item(s)
-                    # This should be in a constructive sentence
         #   Total coast including inclusding tax:
                 # This should be in a constructive sentence
+    def Totalpaid(self):
+        """ It provides the total amount paid by the customer with tax and after 
+        deducting the customer coupon discount.
+
+        Side effects: 
+            It update the total amount paid by the customer.
+
+        Returns: 
+            Amount paid.
+        """
+        state_tax = 0.10
+        discount_coupon = 0.02
+
+        discount_coupon = float(self.t_amount*discount_coupon)
+        state_tax = float(self.t_amount * state_tax)
+
+        paid_by_customer = (self.t_amount + state_tax) - discount_coupon
+        return f'Total Paid By Customer with tax: ${paid_by_customer}'
         
 
 ## Replace this comment with a method(s) that displace the following information
@@ -145,5 +160,6 @@ if __name__ == "__main__": #statement and the proceeding information
     n = p.UpdateLists('sample_items.txt') # for testing
     ll = p.TotalCalc() # for testing
     t = p.Totalitem() # for testing
+    S = p.Totalpaid() # for testing
     print(t) # for testing
     print(ll) # for testing
