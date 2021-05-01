@@ -120,6 +120,31 @@ class IventoryClass:
 
         items_found = len(self.found)
         return f'Total item(s) of your list found in the store: {items_found}'
+    
+    def suggest(self):
+        """ Suggests items that have the same price.
+        Side effects:
+            Modifies the variables item_key, ej, item_key2, kj, tuple_pair, and suggestion
+        Returns:
+            String statement with suggestions list containing items with the same price.
+        """
+        suggestions = []
+        for item2 in self.found:
+            item_key = item2[0]
+            ej = self.inventory_dictionary.get(item_key)
+            for r in ej:
+                if r[0] == 'Price':            
+                    for key in self.inventory_dictionary:
+                        item_key2 = key
+                        kj = self.inventory_dictionary.get(item_key2)
+                        for b in kj:
+                            if b[0] == 'Price' and b[1] == r[1]:
+                                if item_key != item_key2:
+                                    tuple_pair = item_key, item_key2
+                                    suggestions.append(tuple_pair)
+        return f'These are items with the same prices: {suggestions}'
+            
+    
 
                     
 ## Replace this comment with method(s) that display the following information
@@ -145,5 +170,7 @@ if __name__ == "__main__": #statement and the proceeding information
     n = p.UpdateLists('sample_items.txt') # for testing
     ll = p.TotalCalc() # for testing
     t = p.Totalitem() # for testing
+    z = p.suggest() # for testing
     print(t) # for testing
     print(ll) # for testing
+    print (z) # for testing
