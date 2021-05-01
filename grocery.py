@@ -112,16 +112,12 @@ class IventoryClass:
             Side effects:
                 Prints to the console  
         """
-        list_file = open('sample_items.txt', "r")
-        count = 0
-        list1 = list_file.read()
-        shopping_list = list1.split("\n")
-        for i in shopping_list:
-            if i:
-                count += 1
-        print (f'Total item(s) on your list: {count}')
-        i in self.found
-        return f'Total item(s) of your list found in the store: {count-1}'
+        list_items = len(self.found) + len(self.not_found)
+        print (f'Total item(s) in your list: {list_items}')
+
+        items_found = len(self.found)
+        return f'Total item(s) of your list found in the store: {items_found}'
+
                     
 ## Replace this comment with method(s) that display the following information
         #   Total items(s) not fund: 1
