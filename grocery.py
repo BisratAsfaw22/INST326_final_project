@@ -111,6 +111,9 @@ class IventoryClass:
             
             Side effects:
                 Prints to the console  
+            
+            Returns:
+                returns total items of the list that are found 
         """
         list_items = len(self.found) + len(self.not_found)
         print (f'Total item(s) in your list: {list_items}')
