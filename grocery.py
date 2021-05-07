@@ -187,6 +187,6 @@ if __name__ == "__main__": #statement and the proceeding information
     t = p.Totalitem() # for testing
     z = p.suggest() # for testing
     S = p.Totalpaid() # for testing
-    print(t) # for testing
-    print(ll) # for testing
+    #print(k) # for testing
+    print(11) # for testing
     print (z) # for testing
