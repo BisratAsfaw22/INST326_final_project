@@ -1,4 +1,4 @@
-###### Levis Forbang's section: "import csv" to "def TotalCalc(self):"
+###### Levis Forbang's section: "import csv" state  to "TotalCalc(self):" Method
 
 import csv
 
@@ -57,7 +57,8 @@ class IventoryClass:
                                                         ]
                                                  }
                                             )
-     
+        
+   
     def UpdateLists(self, file2):
         """ This method reads a text file and updates
         "found" and "not_found" attributes accordingly
@@ -76,10 +77,15 @@ class IventoryClass:
                 parts2 = parts[0], parts[1]
                 #print(parts2)
                 if parts[0] in self.inventory_dictionary:
-                    ##print(parts2)
+                    #print(parts2)
                     self.found.append(parts2)
+                   # print("Item's on your list that was found in our inventory")
+                    #print(self.found)
                 else:
                     self.not_found.append(parts2)
+                    #print("Item's on your list that was not found in our inventory")
+                    #print(self.not_found)
+
         
         
     def TotalCalc(self):
@@ -92,7 +98,9 @@ class IventoryClass:
         Returns:
             Returns the t_amount and t_qty attributes as tuples 
         """
-        
+        print("The following are item(s) on your list that was not found")
+        for x in self.not_found:
+            print(f'Name: {x[0]}, Qty: {x[1]}')
         print(f'The following are the item(s) on your list that was found.') # For testing
         for item in self.found:
             
@@ -100,13 +108,13 @@ class IventoryClass:
             item_qty = int(item[1])
             self.t_qty += item_qty
             hj = self.inventory_dictionary.get(item_key)
-            print(f'Item name: {item_key}') # for testing
+            print(f'Item name: {item_key}, Qty: {item_qty}')# for testing
             print(f'Informatin about the item: {hj}') # for testing
             for q in hj:
                 if q[0] == 'Price':
                     self.t_amount += float(q[1]) * float(item_qty)
-        return f'Total cost: ${self.t_amount}, Total qty: {self.t_qty}' # "Total cost: $" & Total qty:" will be removed
-    
+        return f'Total cost: ${self.t_amount}' # "Total cost: $" & Total qty:" will be removed
+        
 ## Replace this comment with Method(s) that display the following information.
 
         #   Total item(s) on your list: 3
