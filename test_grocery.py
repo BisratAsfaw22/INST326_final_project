@@ -1,11 +1,11 @@
 import pytest
-import grocery2 as g2
+import grocery as g
 
 ## The following test below are for Levis Forbang's section ##
 
 @pytest.fixture
 def IVClass():
-    return g2.IventoryClass()
+    return g.IventoryClass()
 
 def test_IVClass(IVClass):
     
