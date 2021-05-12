@@ -1,4 +1,5 @@
 import csv
+import re
 
 class IventoryClass:
     """ This is the main class of the program having the following attributes:
@@ -115,13 +116,63 @@ class IventoryClass:
             Returns:
                 The total items of the list that are found 
         """
+        i = self.not_found
+        item = i[0]
+        prod = item[0]
         list_items = len(self.found) + len(self.not_found)
-        print (f'Total item(s) in your list: {list_items}')
-
         items_found = len(self.found)
-        return f'Total item(s) of your list found in the store: {items_found}'
+        return f'Total number of item(s) in your list: {list_items} \nTotal item(s) of your list found in the store: {items_found} \nItems in your list that are not found in the store : {prod}'
+        
+    def Search(self):
+        """   """
+        s = input("Search for additional items: ")
+        s= str(s)
+        dic = self.inventory_dictionary
+        #k = re.IGNORECASE
+        #s=str(k)
+        
+        for item in dic:
+            i1 = self.inventory_dictionary.get(item)
+            i2 = i1[2]
+            #s = str(re.compile(r'[A-Z]', re.IGNORECASE))
+            #k= re.search(s)
+            if s in item:
+                print(f'{item}, Price: ${i2[1]}')
+                break
+        else: 
+            print("Item not found")
+                
 
-                    
+    def ratings(self):
+        """   """
+        ratingScale = [1,2,3,4,5]
+        print(f'Please rate your general experience with us following the rating scale below.')
+        print(f'{ratingScale[0]} = Unsuccessful \n{ratingScale[1]} = Not bad \n{ratingScale[2]} = Okay \n{ratingScale[3]} = Very good \n{ratingScale[4]} = Successful')
+        x = input('Insert rating: ')
+        y = int(x)
+        #z = str(y)
+        
+        if y in ratingScale:
+            print('Thank you for your feedback!')  
+        elif y not in ratingScale:
+            raise KeyError("The input should be a number")
+        else:
+            i = input('Insert rating again: ')
+            i = int(i)
+            if i in ratingScale:
+                print('Thank you for your feedback!')
+            else:
+                print("Exit")
+        
+
+
+# Add a method that suggests a nearby store for items not found maybe using a dictionary.
+# add a delivery date for items not found
+#calculate distance
+
+
+
+                
 ## Replace this comment with method(s) that display the following information
         #   Total items(s) not fund: 1
                 # Display the names(key) of the item(s)
@@ -141,9 +192,13 @@ class IventoryClass:
 if __name__ == "__main__": #statement and the proceeding information
     
     p = IventoryClass() # for testing
-    k = p.UpdateInventory('inst326_project.csv') # for testing
-    n = p.UpdateLists('sample_items.txt') # for testing
-    ll = p.TotalCalc() # for testing
-    t = p.Totalitem() # for testing
-    print(t) # for testing
-    print(ll) # for testing
+k = p.UpdateInventory('inst326_project.csv') # for testing
+n = p.UpdateLists('sample_items.txt') # for testing
+ll = p.TotalCalc() # for testing
+t = p.Totalitem() # for testing
+r = p.ratings()
+s = p.Search()
+print(t) # for testing
+#print(ll) # for testing
+#print(s)
+#print(r)
