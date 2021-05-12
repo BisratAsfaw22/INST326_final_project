@@ -161,28 +161,6 @@ class IventoryClass:
         
 
 
-# Add a method that suggests a nearby store for items not found maybe using a dictionary.
-# add a delivery date for items not found
-#calculate distance
-
-
-
-                
-## Replace this comment with method(s) that display the following information
-        #   Total items(s) not fund: 1
-                # Display the names(key) of the item(s)
-                    # This should be in a constructive sentence
-        #   Total coast including inclusding tax:
-                # This should be in a constructive sentence
-        
-
-## Replace this comment with a method(s) that displace the following information
-
-        # Display items that are on sale based on items note found
-            # It can be item(s) on sale that share similar key term in name (eg. eggs)
-            
-            
-## Replace This comment with folliwng information 
 
 if __name__ == "__main__": #statement and the proceeding information
     
