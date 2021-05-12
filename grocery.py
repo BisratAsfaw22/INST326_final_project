@@ -148,11 +148,11 @@ class IventoryClass:
         ratingScale = [1,2,3,4,5]
         print(f'Please rate your general experience with us following the rating scale below.')
         print(f'{ratingScale[0]} = Unsuccessful \n{ratingScale[1]} = Not bad \n{ratingScale[2]} = Okay \n{ratingScale[3]} = Very good \n{ratingScale[4]} = Successful')
-        x = input('Insert rating: ')
-        y = int(x)
+        rate = input('Insert rating: ')
+        ra = int(rate)
         #z = str(y)
         
-        if y in ratingScale:
+        if ra in ratingScale:
             print('Thank you for your feedback!')  
         elif y not in ratingScale:
             raise KeyError("The input should be a number")
