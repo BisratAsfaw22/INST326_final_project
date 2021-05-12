@@ -128,14 +128,10 @@ class IventoryClass:
         s = input("Search for additional items: ")
         s= str(s)
         dic = self.inventory_dictionary
-        #k = re.IGNORECASE
-        #s=str(k)
         
         for item in dic:
             i1 = self.inventory_dictionary.get(item)
             i2 = i1[2]
-            #s = str(re.compile(r'[A-Z]', re.IGNORECASE))
-            #k= re.search(s)
             if s in item:
                 print(f'{item}, Price: ${i2[1]}')
                 break
@@ -150,7 +146,6 @@ class IventoryClass:
         print(f'{ratingScale[0]} = Unsuccessful \n{ratingScale[1]} = Not bad \n{ratingScale[2]} = Okay \n{ratingScale[3]} = Very good \n{ratingScale[4]} = Successful')
         rate = input('Insert rating: ')
         ra = int(rate)
-        #z = str(y)
         
         if ra in ratingScale:
             print('Thank you for your feedback!')  
