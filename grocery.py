@@ -105,6 +105,23 @@ class IventoryClass:
                 if q[0] == 'Price':
                     self.t_amount += float(q[1]) * float(item_qty)
         return f'Total cost: ${self.t_amount}, Total qty: {self.t_qty}' # "Total cost: $" & Total qty:" will be removed
+
+    def Totalpaid(self):
+        """ It provides the total amount paid by the customer with tax and after 
+        deducting the customer coupon discount.
+        Side effects: 
+            It update the total amount paid by the customer.
+        Returns: 
+            Amount paid.
+        """
+        state_tax = 0.10
+        discount_coupon = 0.02
+
+        discount_coupon = float(self.t_amount*discount_coupon)
+        state_tax = float(self.t_amount * state_tax)
+
+        paid_by_customer = (self.t_amount + state_tax) - discount_coupon
+        return f'Total Paid By Customer with tax: ${paid_by_customer}'
         
     def Totalitem(self):
         """It gives the total items on the users list and the total items that were found.
@@ -119,6 +136,29 @@ class IventoryClass:
         list_items = len(self.found) + len(self.not_found)
         items_found = len(self.found)
         return f'Total number of item(s) in your list: {list_items} \nTotal item(s) of your list found in the store: {items_found} \nItems in your list that are not found in the store : {prod}'
+
+    def suggest(self):
+        """ Suggests items that have the same price.
+        Side effects:
+            Modifies the variables item_key, ej, item_key2, kj, tuple_pair, and suggestion
+        Returns:
+            String statement with suggestions list containing items with the same price.
+        """
+        suggestions = []
+        for item2 in self.found:
+            item_key = item2[0]
+            ej = self.inventory_dictionary.get(item_key)
+            for r in ej:
+                if r[0] == 'Price':            
+                    for key in self.inventory_dictionary:
+                        item_key2 = key
+                        kj = self.inventory_dictionary.get(item_key2)
+                        for b in kj:
+                            if b[0] == 'Price' and b[1] == r[1]:
+                                if item_key != item_key2:
+                                    tuple_pair = item_key, item_key2
+                                    suggestions.append(tuple_pair)
+        return f'These are items with the same prices: {suggestions}'
         
     def Search(self):
         """Allows user to serach/look for any additinal items not included in their shopping list.
@@ -174,11 +214,15 @@ if __name__ == "__main__": #statement and the proceeding information
     p = IventoryClass() # for testing
     k = p.UpdateInventory('inst326_project.csv') # for testing
     n = p.UpdateLists('sample_items.txt') # for testing
-    ll = p.TotalCalc() # for testing
     t = p.Totalitem() # for testing
+    ll = p.TotalCalc() # for testing
+    S = p.Totalpaid() # for testing
+    z = p.suggest() # for testing
     r = p.ratings()
-    s = p.Search()
+    a = p.Search()
     print(t) # for testing
-    #print(ll) # for testing
-    #print(s)
-    #print(r)
+    print(ll) # for testing
+    print(S)
+    print(z)
+    print(r)
+    print(a)
