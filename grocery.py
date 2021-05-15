@@ -218,11 +218,11 @@ if __name__ == "__main__": #statement and the proceeding information
     ll = p.TotalCalc() # for testing
     S = p.Totalpaid() # for testing
     z = p.suggest() # for testing
-    r = p.ratings()
-    a = p.Search()
+    #r = p.ratings()
+    #a = p.Search()
     print(t) # for testing
     print(ll) # for testing
     print(S)
     print(z)
-    print(r)
-    print(a)
+    #print(r)
+    #print(a)
