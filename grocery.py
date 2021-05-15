@@ -109,12 +109,9 @@ class IventoryClass:
     def Totalitem(self):
         """It gives the total items on the users list and the total items that were found.
         
-            
-            Side effects:
-                Prints to the console  
-            
             Returns:
-                The total items of the list that are found 
+                Number of total items in the list, number of items found and the name of
+                the item not found.
         """
         i = self.not_found
         item = i[0]
@@ -124,15 +121,23 @@ class IventoryClass:
         return f'Total number of item(s) in your list: {list_items} \nTotal item(s) of your list found in the store: {items_found} \nItems in your list that are not found in the store : {prod}'
         
     def Search(self):
-        """   """
+        """Allows user to serach/look for any additinal items not included in their shopping list.
+        
+            Side Effects:
+                    Print:
+                        (str):"Search for additional items:"
+                              Gives out the name of the item and its price
+                        (str):"Item not found."
+        
+        """
         s = input("Search for additional items: ")
-        s= str(s)
+        s= str(s.lower())
         dic = self.inventory_dictionary
         
         for item in dic:
             i1 = self.inventory_dictionary.get(item)
             i2 = i1[2]
-            if s in item:
+            if s in item.lower():
                 print(f'{item}, Price: ${i2[1]}')
                 break
         else: 
@@ -140,38 +145,40 @@ class IventoryClass:
                 
 
     def ratings(self):
-        """   """
-        ratingScale = [1,2,3,4,5]
+        """Allows the user to rate his/her overall experience: enter a number based on the given
+           rating scale, if input invalid then it asks the user to insert rating again or exit .
+
+           Side Effects: 
+                    Prints:
+                        (str):"Please rate your general experience with us following the rating scale below."
+                              "Insert rating: "
+                        (str):"Thank you for your feedback!"
+                              "Input should be an integer less than 6, please Insert again:"
+        """
+        rating_scale = ["1","2","3","4","5"]
         print(f'Please rate your general experience with us following the rating scale below.')
-        print(f'{ratingScale[0]} = Unsuccessful \n{ratingScale[1]} = Not bad \n{ratingScale[2]} = Okay \n{ratingScale[3]} = Very good \n{ratingScale[4]} = Successful')
-        rate = input('Insert rating: ')
-        ra = int(rate)
+        print(f'{rating_scale[0]} = Unsuccessful\n{rating_scale[1]} = Not bad\n{rating_scale[2]} = Okay\n{rating_scale[3]} = Very good\n{rating_scale[4]} = Successful')
+        rate = input('Insert rating:')
         
-        if ra in ratingScale:
+        if rate in rating_scale:
             print('Thank you for your feedback!')  
-        elif y not in ratingScale:
-            raise KeyError("The input should be a number")
         else:
-            i = input('Insert rating again: ')
-            i = int(i)
-            if i in ratingScale:
+            rate = input('Input should be an integer less than 6, please Insert again:')
+            if rate in rating_scale:
                 print('Thank you for your feedback!')
             else:
                 print("Exit")
         
 
-
-
 if __name__ == "__main__": #statement and the proceeding information
-    
     p = IventoryClass() # for testing
-k = p.UpdateInventory('inst326_project.csv') # for testing
-n = p.UpdateLists('sample_items.txt') # for testing
-ll = p.TotalCalc() # for testing
-t = p.Totalitem() # for testing
-r = p.ratings()
-s = p.Search()
-print(t) # for testing
-#print(ll) # for testing
-#print(s)
-#print(r)
+    k = p.UpdateInventory('inst326_project.csv') # for testing
+    n = p.UpdateLists('sample_items.txt') # for testing
+    ll = p.TotalCalc() # for testing
+    t = p.Totalitem() # for testing
+    r = p.ratings()
+    s = p.Search()
+    print(t) # for testing
+    #print(ll) # for testing
+    #print(s)
+    #print(r)
