@@ -1,7 +1,7 @@
 import csv
 import re
 
-class IventoryClass:
+class InventoryClass:
     """ This is the main class of the program having the following attributes:
     
     Attributes:
@@ -100,7 +100,7 @@ class IventoryClass:
             self.t_qty += item_qty
             hj = self.inventory_dictionary.get(item_key)
             print(f'Item name: {item_key}') # for testing
-            print(f'Informatin about the item: {hj}') # for testing
+            print(f'Information about the item: {hj}') # for testing
             for q in hj:
                 if q[0] == 'Price':
                     self.t_amount += float(q[1]) * float(item_qty)
@@ -135,7 +135,7 @@ class IventoryClass:
         prod = item[0]
         list_items = len(self.found) + len(self.not_found)
         items_found = len(self.found)
-        return f'Total number of item(s) in your list: {list_items} \nTotal item(s) of your list found in the store: {items_found} \nItems in your list that are not found in the store : {prod}'
+        return f'Total number of item(s) in your list: {list_items} \nTotal item(s) of your list found in the store: {items_found} \nItem(s) in your list that are not found in the store : {prod}'
 
     def suggest(self):
         """ Suggests items that have the same price.
@@ -170,7 +170,7 @@ class IventoryClass:
                         (str):"Item not found."
         
         """
-        s = input("Search for additional items: ")
+        s = input("Search for any additional items: ")
         s= str(s.lower())
         dic = self.inventory_dictionary
         
@@ -196,7 +196,7 @@ class IventoryClass:
                               "Input should be an integer less than 6, please Insert again:"
         """
         rating_scale = ["1","2","3","4","5"]
-        print(f'Please rate your general experience with us following the rating scale below.')
+        print(f'Please rate your general experience following the rating scale below.')
         print(f'{rating_scale[0]} = Unsuccessful\n{rating_scale[1]} = Not bad\n{rating_scale[2]} = Okay\n{rating_scale[3]} = Very good\n{rating_scale[4]} = Successful')
         rate = input('Insert rating:')
         
@@ -210,19 +210,19 @@ class IventoryClass:
                 print("Exit")
         
 
+
 if __name__ == "__main__": #statement and the proceeding information
-    p = IventoryClass() # for testing
+
+    p = InventoryClass() # for testing
     k = p.UpdateInventory('inst326_project.csv') # for testing
     n = p.UpdateLists('sample_items.txt') # for testing
     t = p.Totalitem() # for testing
     ll = p.TotalCalc() # for testing
     S = p.Totalpaid() # for testing
     z = p.suggest() # for testing
-    r = p.ratings()
-    a = p.Search()
     print(t) # for testing
     print(ll) # for testing
     print(S)
     print(z)
-    print(r)
-    print(a)
+    r = p.ratings() # for testing
+    a = p.Search() # for testing
