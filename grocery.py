@@ -142,8 +142,7 @@ class InventoryClass:
         Side effects:
             Modifies the variables item_key, ej, item_key2, kj, tuple_pair, and
                 suggestions
-        Returns:
-            String statement with suggestions list containing item pairs with
+            Prints string statement with suggestions list containing item pairs with
                 similar prices (within $1 range)
         """
         suggestions = []
@@ -163,32 +162,31 @@ class InventoryClass:
                                 if item_key != item_key2:
                                     tuple_pair = item_key, item_key2
                                     suggestions.append(tuple_pair)
-        return f'Item pairs with similar prices: {suggestions}'
+        print("Item pairs with similar prices: " + str(suggestions))
     
     def suggest_category(self):
         """ Suggests items of the same food categories.
         Side effects:
-            Modifies the variables item_key, ej, item_key2, kj, tuple_pair, and
-                suggestions
-        Returns:
-            String statement with suggestions list containing item pairs with
-                the same food categories
+            Modifies the variables item_key3, wj, item_key4, uj, tuple_pair2, and
+                suggestions2
+            Prints string statement with suggestions list containing item pairs
+                with the same food categories
         """
-        suggestions = []
-        for item2 in self.found:
-            item_key = item2[0]
-            ej = self.inventory_dictionary.get(item_key)
-            for r in ej:
-                if r[0] == 'Food Category':            
-                    for key in self.inventory_dictionary:
-                        item_key2 = key
-                        kj = self.inventory_dictionary.get(item_key2)
-                        for b in kj:
-                            if b[0] == 'Food Category' and b[1] == r[1]:
-                                if item_key != item_key2:
-                                    tuple_pair = item_key, item_key2
-                                    suggestions.append(tuple_pair)
-        return f'Item pairs with the same food categories: {suggestions}'
+        suggestions2 = []
+        for item3 in self.found:
+            item_key3 = item3[0]
+            wj = self.inventory_dictionary.get(item_key3)
+            for t in wj:
+                if t[0] == 'Food Category':            
+                    for key2 in self.inventory_dictionary:
+                        item_key4 = key2
+                        uj = self.inventory_dictionary.get(item_key4)
+                        for y in uj:
+                            if y[0] == 'Food Category' and y[1] == t[1]:
+                                if item_key3 != item_key4:
+                                    tuple_pair2 = item_key3, item_key4
+                                    suggestions2.append(tuple_pair2)
+        print("Item pairs with the same food categories: " + str(suggestions2))
         
     def review(self):
         """ Allows the user to leave a review and view those left by others.
@@ -271,11 +269,9 @@ if __name__ == "__main__": #statement and the proceeding information
     S = p.Totalpaid() # for testing
     pr = p.suggest_price() # for testing
     c = p.suggest_category()
-    re = p.review()
     print(t) # for testing
     print(ll) # for testing
     print(S)
-    print(pr)
-    print(c)
     r = p.ratings() # for testing
+    re = p.review()
     a = p.Search() # for testing
