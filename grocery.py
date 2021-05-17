@@ -122,6 +122,19 @@ class InventoryClass:
 
         paid_by_customer = (self.t_amount + state_tax) - discount_coupon
         return f'Total Paid By Customer with tax: ${paid_by_customer}'
+    
+    def veteran_discount(self):
+        customer_input = input("Hello! Are you a veteran? YES or NO: ")
+
+        vet_discount = float(input("How many years did you serve your country:\n"))
+        total_payment = paid_by_customer - vet_discount
+
+        #respect the condition using if statement
+        if customer_input == "YES":
+            print("Total Paid By Customer after the Veteran Discount:" + str(total_payment))
+
+        else:
+            print("No veteran discount applied.Total Paid By Customer with tax:" + str(paid_by_customer))
         
     def Totalitem(self):
         """It gives the total items on the users list and the total items that were found.
@@ -267,6 +280,7 @@ if __name__ == "__main__": #statement and the proceeding information
     t = p.Totalitem() # for testing
     ll = p.TotalCalc() # for testing
     S = p.Totalpaid() # for testing
+    v = p.veteran_discount()# for testing
     pr = p.suggest_price() # for testing
     c = p.suggest_category()
     print(t) # for testing
