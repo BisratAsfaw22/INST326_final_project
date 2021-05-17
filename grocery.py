@@ -137,12 +137,13 @@ class InventoryClass:
         items_found = len(self.found)
         return f'Total number of item(s) in your list: {list_items} \nTotal item(s) of your list found in the store: {items_found} \nItem(s) in your list that are not found in the store : {prod}'
 
-    def suggest(self):
-        """ Suggests items that have the same price.
+    def suggest_price(self):
+        """ Suggests items with similar prices.
         Side effects:
-            Modifies the variables item_key, ej, item_key2, kj, tuple_pair, and suggestion
-        Returns:
-            String statement with suggestions list containing items with the same price.
+            Modifies the variables item_key, ej, item_key2, kj, tuple_pair, and
+                suggestions
+            Prints string statement with suggestions list containing item pairs with
+                similar prices (within $1 range)
         """
         suggestions = []
         for item2 in self.found:
@@ -154,11 +155,58 @@ class InventoryClass:
                         item_key2 = key
                         kj = self.inventory_dictionary.get(item_key2)
                         for b in kj:
-                            if b[0] == 'Price' and b[1] == r[1]:
+                            if b[0] == 'Price' and \
+                            ((float(r[1]) - 1) <= float(b[1]) <= \
+                            (float(r[1]) + 1)) and ((float(b[1]) - 1) <= \
+                            float(r[1]) <= (float(b[1]) + 1)):
                                 if item_key != item_key2:
                                     tuple_pair = item_key, item_key2
                                     suggestions.append(tuple_pair)
-        return f'These are items with the same prices: {suggestions}'
+        print("Item pairs with similar prices: " + str(suggestions))
+    
+    def suggest_category(self):
+        """ Suggests items of the same food categories.
+        Side effects:
+            Modifies the variables item_key3, wj, item_key4, uj, tuple_pair2, and
+                suggestions2
+            Prints string statement with suggestions list containing item pairs
+                with the same food categories
+        """
+        suggestions2 = []
+        for item3 in self.found:
+            item_key3 = item3[0]
+            wj = self.inventory_dictionary.get(item_key3)
+            for t in wj:
+                if t[0] == 'Food Category':            
+                    for key2 in self.inventory_dictionary:
+                        item_key4 = key2
+                        uj = self.inventory_dictionary.get(item_key4)
+                        for y in uj:
+                            if y[0] == 'Food Category' and y[1] == t[1]:
+                                if item_key3 != item_key4:
+                                    tuple_pair2 = item_key3, item_key4
+                                    suggestions2.append(tuple_pair2)
+        print("Item pairs with the same food categories: " + str(suggestions2))
+        
+    def review(self):
+        """ Allows the user to leave a review and view those left by others.
+        Side Effects:
+            Modifies values of review, customer_reviews, and review_stored
+            Modifies content of reviews.txt
+            Prints reviews_stored
+        """
+        customer_reviews = []
+        with open("reviews.txt","a", encoding="utf-8") as f:
+            review = input("Please leave a review of this application:")
+            customer_reviews.append(str(review))
+            for n in range(len(customer_reviews)):
+                f.write(str(customer_reviews[n]))
+                f.write("\n")
+        with open("reviews.txt","r", encoding="utf-8") as f:
+            print("Thank you! These are the reviews that we have received so" + 
+                  " far:")
+            reviews_stored = f.read().splitlines()
+            print (reviews_stored)
         
     def Search(self):
         """Allows user to serach/look for any additinal items not included in their shopping list.
@@ -219,10 +267,11 @@ if __name__ == "__main__": #statement and the proceeding information
     t = p.Totalitem() # for testing
     ll = p.TotalCalc() # for testing
     S = p.Totalpaid() # for testing
-    z = p.suggest() # for testing
+    pr = p.suggest_price() # for testing
+    c = p.suggest_category()
     print(t) # for testing
     print(ll) # for testing
     print(S)
-    print(z)
     r = p.ratings() # for testing
+    re = p.review()
     a = p.Search() # for testing
