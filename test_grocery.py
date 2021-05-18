@@ -10,12 +10,13 @@ def IVClass():
     return g.InventoryClass()
 
 def test_IVClass(IVClass):
+    "Tests to make sure if the dictionary is empty."
     
     assert IVClass.inventory_dictionary == dict()
     
 
 def test_updateinventory(IVClass):
-    
+    "Tests to make sure if the dictionary is properly updated."
     IVClass.UpdateInventory("grocery_store.csv")
     
     assert len(IVClass.inventory_dictionary) == 11
@@ -23,7 +24,7 @@ def test_updateinventory(IVClass):
     assert "Eggland's Best Eggs, Large - 12 eggs, 24 oz" in IVClass.inventory_dictionary
     
 def test_updatelist(IVClass):
-    
+    "Tests to make sure the attribute found has the proper values."
     IVClass.UpdateInventory("grocery_store.csv")
     
     IVClass.UpdateLists("sample_items.txt")

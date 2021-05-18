@@ -22,6 +22,7 @@ class InventoryClass:
             found (list): list of tuples
             not_found (list): list of tuples
             t_amount (float): Total amount
+            paid_by_customer(float): Total cost with tax
         """
         
         self.inventory_dictionary = dict()
