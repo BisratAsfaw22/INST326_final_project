@@ -10,6 +10,7 @@ class InventoryClass:
         not_found (list): list of tuples
         t_amount (float): Total amount
         t_qty (int): total quantity
+        paid_by_customer(float): Total cost with tax
     """
         
     
