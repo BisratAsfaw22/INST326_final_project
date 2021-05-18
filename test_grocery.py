@@ -7,7 +7,7 @@ from unittest import mock
 
 @pytest.fixture
 def IVClass():
-    return g.IventoryClass()
+    return g.InventoryClass()
 
 def test_IVClass(IVClass):
     
