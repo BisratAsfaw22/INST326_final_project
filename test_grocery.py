@@ -35,6 +35,15 @@ def test_search(IVClass):
     "Does search() print the name of the item and price?"
     with mock.patch("builtins.input", side_effect = [('Calue Corner Whole Milk , 1 Gallon, 4.99')]):
         assert builtins.input() == 'Calue Corner Whole Milk , 1 Gallon, 4.99'
+    
+def test_review(IVClass):
+    """Does the review() method of the Inventory Class properly write out the 
+        user review input to the reviews.txt file?"""
+    with mock.patch("builtins.input", side_effect=["Well designed!"]):
+        IVClass.review()
+        with open('reviews.txt') as f:
+            lines = f.readlines()
+            assert "Well designed!\n" in lines
 
 ## The following test below are for Anani Adjanor's section ##
 # def test_veteran_discount(IVClass):
