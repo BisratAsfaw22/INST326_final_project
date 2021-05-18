@@ -13,7 +13,7 @@ class InventoryClass:
     """
         
     
-    def __init__(self, inventory_dictionary=dict(), found=list(), not_found=list(), t_amount=0.0, t_qty=0):
+    def __init__(self):
         """ This method establish the following attributes of the class:
         
         Attributes:
@@ -24,13 +24,13 @@ class InventoryClass:
             t_amount (float): Total amount
         """
         
-        self.inventory_dictionary = inventory_dictionary
-        self.found = found 
-        self.not_found = not_found
-        self.t_amount = t_amount
-        self.t_qty = t_qty
+        self.inventory_dictionary = dict()
+        self.found = list()
+        self.not_found = list()
+        self.t_amount = 0.0
+        self.t_qty = 0
+        self.paid_by_customer = 0.0
         
-    
     def UpdateInventory(self, file1):
         """ This method reads and updates the inventory_dictionary attribute
         with data from the csv file. 
@@ -68,14 +68,11 @@ class InventoryClass:
             Update "found" and "not_found" attributes
         """
             
-        #print(self.inventory_dictionary)
         with open(file2, "r", encoding="utf-8") as f:
             for line in f:
                 parts = line.strip().split("\t")
                 parts2 = parts[0], parts[1]
-                #print(parts2)
                 if parts[0] in self.inventory_dictionary:
-                    ##print(parts2)
                     self.found.append(parts2)
                 else:
                     self.not_found.append(parts2)
@@ -91,54 +88,54 @@ class InventoryClass:
         Returns:
             Returns the t_amount and t_qty attributes as tuples 
         """
-        
-        print(f'The following are the item(s) on your list that was found.') # For testing
+         
         for item in self.found:
             
             item_key = item[0]
             item_qty = int(item[1])
             self.t_qty += item_qty
             hj = self.inventory_dictionary.get(item_key)
-            print(f'Item name: {item_key}') # for testing
-            print(f'Information about the item: {hj}') # for testing
             for q in hj:
                 if q[0] == 'Price':
                     self.t_amount += float(q[1]) * float(item_qty)
-        return f'Total cost: ${self.t_amount}, Total qty: {self.t_qty}' # "Total cost: $" & Total qty:" will be removed
+        return f'Total cost: ${self.t_amount}, Total qty: {self.t_qty}' 
 
     def Totalpaid(self):
-        """ It provides the total amount paid by the customer with tax and after 
-        deducting the customer coupon discount.
+        """ It provides the total amount paid by the customer with tax.
+
         Side effects: 
             It update the total amount paid by the customer.
-        Returns: 
-            Amount paid.
         """
         state_tax = 0.10
-        discount_coupon = 0.02
 
-        discount_coupon = float(self.t_amount*discount_coupon)
         state_tax = float(self.t_amount * state_tax)
 
-        paid_by_customer = (self.t_amount + state_tax) - discount_coupon
-        return f'Total Paid By Customer with tax: ${paid_by_customer}'
-        
-    def Totalitem(self):
-        """It gives the total items on the users list and the total items that were found.
-        
-            Returns:
-                Number of total items in the list, number of items found and the name of
-                the item not found.
-        """
-        i = self.not_found
-        item = i[0]
-        prod = item[0]
-        list_items = len(self.found) + len(self.not_found)
-        items_found = len(self.found)
-        return f'Total number of item(s) in your list: {list_items} \nTotal item(s) of your list found in the store: {items_found} \nItem(s) in your list that are not found in the store : {prod}'
+        self.paid_by_customer = (self.t_amount + state_tax) 
 
+    def veteran_discount(self):
+        """ It provides the total amount paid by the customer with tax and after 
+        the veteran discount if the customer qualify.
+
+        Side effects: 
+            It update the total amount paid by the customer by applying the veteran discount.
+            prints total payment after veteran discount.
+        """
+        customer_input = input("Are you a veteran? YES or NO: ")
+
+        vet_discount = float(input("How many years did you serve your country:\n"))
+
+        total_payment = (self.t_amount*1.1) - vet_discount
+
+        if customer_input == "YES":
+            print("Total Paid By Customer after the Veteran Discount:" + str(total_payment))
+
+        else:
+            print("No veteran discount applied.")
+            pass
+    
     def suggest_price(self):
         """ Suggests items with similar prices.
+
         Side effects:
             Modifies the variables item_key, ej, item_key2, kj, tuple_pair, and
                 suggestions
@@ -166,6 +163,7 @@ class InventoryClass:
     
     def suggest_category(self):
         """ Suggests items of the same food categories.
+
         Side effects:
             Modifies the variables item_key3, wj, item_key4, uj, tuple_pair2, and
                 suggestions2
@@ -187,9 +185,41 @@ class InventoryClass:
                                     tuple_pair2 = item_key3, item_key4
                                     suggestions2.append(tuple_pair2)
         print("Item pairs with the same food categories: " + str(suggestions2))
+
+    def display(self):
+        """Displays the output for the grocery simulator.
         
+        Side effects: 
+            Prints out the total items that are found/not found in the shopping list and store, along
+            with the costs and quantites. 
+        """
+        
+        i = self.not_found[0]
+        prod = i[0]
+        
+        print ("Welcome to our grocery store simulator!")
+        print ("Based on your shopping list, here is what we have gathered for you. ")
+        print(f'Total number of item(s) in your list: {len(self.found)+len(self.not_found)}')
+        print(f'Total item(s) on your list that are found in the store: {len(self.found)}')
+        for i in self.found:
+            q = i[1]
+            c = 0.0
+            p = i[0]
+            j = self.inventory_dictionary.get(p)
+            for x in j:
+                if x[0] == "Price":
+                    c += float(x[1])
+            print(f'Name: {i}, Price: {c}, Quantity: {q}')
+        print(f'Total number of item(s) not found in store: {len(self.not_found)}')
+        for i in self.not_found:
+            print(i[0])
+        print(f'Total cost: ${self.t_amount}, Total qty: {self.t_qty}')
+        print(f'Total including tax: ${self.paid_by_customer}')
+        
+    
     def review(self):
         """ Allows the user to leave a review and view those left by others.
+
         Side Effects:
             Modifies values of review, customer_reviews, and review_stored
             Modifies content of reviews.txt
@@ -211,12 +241,11 @@ class InventoryClass:
     def Search(self):
         """Allows user to serach/look for any additinal items not included in their shopping list.
         
-            Side Effects:
-                    Print:
-                        (str):"Search for additional items:"
-                              Gives out the name of the item and its price
-                        (str):"Item not found."
-        
+        Side Effects:
+            Print:
+                (str):"Search for additional items:"
+                      Gives out the name of the item and its price
+                (str):"Item not found."
         """
         s = input("Search for any additional items: ")
         s= str(s.lower())
@@ -236,12 +265,12 @@ class InventoryClass:
         """Allows the user to rate his/her overall experience: enter a number based on the given
            rating scale, if input invalid then it asks the user to insert rating again or exit .
 
-           Side Effects: 
-                    Prints:
-                        (str):"Please rate your general experience with us following the rating scale below."
-                              "Insert rating: "
-                        (str):"Thank you for your feedback!"
-                              "Input should be an integer less than 6, please Insert again:"
+        Side Effects: 
+            Prints:
+                (str):"Please rate your general experience with us following the rating scale below."
+                     "Insert rating: "
+                (str):"Thank you for your feedback!"
+                     "Input should be an integer less than 6, please Insert again:"
         """
         rating_scale = ["1","2","3","4","5"]
         print(f'Please rate your general experience following the rating scale below.')
@@ -259,19 +288,17 @@ class InventoryClass:
         
 
 
-if __name__ == "__main__": #statement and the proceeding information
+if __name__ == "__main__": 
 
-    p = InventoryClass() # for testing
-    k = p.UpdateInventory('inst326_project.csv') # for testing
-    n = p.UpdateLists('sample_items.txt') # for testing
-    t = p.Totalitem() # for testing
-    ll = p.TotalCalc() # for testing
-    S = p.Totalpaid() # for testing
-    pr = p.suggest_price() # for testing
+    p = InventoryClass() 
+    k = p.UpdateInventory('grocery_store.csv')
+    n = p.UpdateLists('sample_items.txt') 
+    ll = p.TotalCalc() 
+    S = p.Totalpaid() 
+    d = p.display()
+    v = p.veteran_discount()
+    pr = p.suggest_price()
     c = p.suggest_category()
-    print(t) # for testing
-    print(ll) # for testing
-    print(S)
-    r = p.ratings() # for testing
+    r = p.ratings() 
     re = p.review()
-    a = p.Search() # for testing
+    a = p.Search() 
